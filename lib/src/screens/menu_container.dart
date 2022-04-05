@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iq_racer/src/models/category.dart';
 import 'package:iq_racer/src/models/user.dart';
 import 'package:iq_racer/src/screens/categories_screen.dart';
 import 'package:iq_racer/src/screens/menuprincipal_screen.dart';
@@ -9,9 +10,10 @@ import 'package:iq_racer/src/screens/trophies_screen.dart';
 import 'package:iq_racer/src/widgets/sidebar_menu.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key, required this.user}) : super(key: key);
+  const HomeScreen({Key? key, required this.user, required this.categories}) : super(key: key);
 
   final User user;
+  final List<Category> categories;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -38,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final List<Widget> _pages = [
       ProfilePage(user: widget.user),
-      const Categories(),
+      Categories(categories: widget.categories),
       const TrophiesPage(),
       QRScreen(user: widget.user),
       SettingsPage(),

@@ -4,6 +4,7 @@ import 'package:iq_racer/src/screens/menu_container.dart';
 import 'package:iq_racer/src/models/user.dart';
 import 'package:iq_racer/src/screens/signup_screen.dart';
 import 'package:http/http.dart' as http;
+import 'package:iq_racer/src/screens/welcome_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -33,7 +34,7 @@ class InitState extends State<LoginScreen> {
           isCorrect = true;
           user = User(
             item["id"],
-            "edubble",
+            "xd",
             item["firstname"],
             item["lastname"],
             item["email"],
@@ -48,7 +49,7 @@ class InitState extends State<LoginScreen> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => HomeScreen(
+                  builder: (context) => WelcomeScreen(
                         user: user,
                       )));
 

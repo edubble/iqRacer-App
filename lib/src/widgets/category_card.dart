@@ -17,7 +17,7 @@ class CategoryCard extends StatelessWidget {
       if (defaultQuizz.isNotEmpty) {
 
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => QuizzPage(quizz: defaultQuizz.first),
+          builder: (context) => QuizzPage(quizz: defaultQuizz[3]),
         ));
 
       } else {

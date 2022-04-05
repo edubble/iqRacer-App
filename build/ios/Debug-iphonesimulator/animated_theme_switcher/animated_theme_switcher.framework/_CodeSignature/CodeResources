@@ -42,7 +42,7 @@
 		</data>
 		<key>Modules/animated_theme_switcher.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		0V8mpopz3NoWcO7fspJUKk6HZkg=
+		J9Ov9GbzWNkgcjQ1+HTW3IRgLsY=
 		</data>
 		<key>Modules/animated_theme_switcher.swiftmodule/arm64.swiftdoc</key>
 		<data>
@@ -50,7 +50,7 @@
 		</data>
 		<key>Modules/animated_theme_switcher.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		0V8mpopz3NoWcO7fspJUKk6HZkg=
+		J9Ov9GbzWNkgcjQ1+HTW3IRgLsY=
 		</data>
 		<key>Modules/animated_theme_switcher.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -58,7 +58,7 @@
 		</data>
 		<key>Modules/animated_theme_switcher.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		cpyIeiJxNbAJ7cRXvKV8KclkXO4=
+		7yrw3M5xpkaMvZSWeoIKBdMJ4Cc=
 		</data>
 		<key>Modules/animated_theme_switcher.swiftmodule/x86_64.swiftdoc</key>
 		<data>
@@ -66,7 +66,7 @@
 		</data>
 		<key>Modules/animated_theme_switcher.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		cpyIeiJxNbAJ7cRXvKV8KclkXO4=
+		7yrw3M5xpkaMvZSWeoIKBdMJ4Cc=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -135,7 +135,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			GvjYUrKgo8S27U0c+vqskFxJ+1DA56awyicQAtS2P5E=
+			+Nhr4Q0c9555WzB9iKuIgXDlNU5BnAU15y2fn0IIP2k=
 			</data>
 		</dict>
 		<key>Modules/animated_theme_switcher.swiftmodule/arm64.swiftdoc</key>
@@ -149,7 +149,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			GvjYUrKgo8S27U0c+vqskFxJ+1DA56awyicQAtS2P5E=
+			+Nhr4Q0c9555WzB9iKuIgXDlNU5BnAU15y2fn0IIP2k=
 			</data>
 		</dict>
 		<key>Modules/animated_theme_switcher.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
@@ -163,7 +163,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ENwJhya/S/s1ptDOxVrtV7IHrYSZ+/KtFwNcZwByjTg=
+			Ox7xJRQWweZb7ITZIjoCKLtbfyBDhKegdqL/jurBcsc=
 			</data>
 		</dict>
 		<key>Modules/animated_theme_switcher.swiftmodule/x86_64.swiftdoc</key>
@@ -177,7 +177,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ENwJhya/S/s1ptDOxVrtV7IHrYSZ+/KtFwNcZwByjTg=
+			Ox7xJRQWweZb7ITZIjoCKLtbfyBDhKegdqL/jurBcsc=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

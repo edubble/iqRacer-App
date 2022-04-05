@@ -42,7 +42,7 @@
 		</data>
 		<key>Modules/flutter_barcode_scanner.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		uIkCktA/hdVUIoOPHeoToAUTX3M=
+		FS/Fq8oZu771PRImDe6YHIgdw/Y=
 		</data>
 		<key>Modules/flutter_barcode_scanner.swiftmodule/arm64.swiftdoc</key>
 		<data>
@@ -50,7 +50,7 @@
 		</data>
 		<key>Modules/flutter_barcode_scanner.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		uIkCktA/hdVUIoOPHeoToAUTX3M=
+		FS/Fq8oZu771PRImDe6YHIgdw/Y=
 		</data>
 		<key>Modules/flutter_barcode_scanner.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -58,7 +58,7 @@
 		</data>
 		<key>Modules/flutter_barcode_scanner.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		9s0ahiPvdDu9qz09aNeGQ5I72Aw=
+		SVJstMDDO+eD/VOyvCEDlyhfcWY=
 		</data>
 		<key>Modules/flutter_barcode_scanner.swiftmodule/x86_64.swiftdoc</key>
 		<data>
@@ -66,7 +66,7 @@
 		</data>
 		<key>Modules/flutter_barcode_scanner.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		9s0ahiPvdDu9qz09aNeGQ5I72Aw=
+		SVJstMDDO+eD/VOyvCEDlyhfcWY=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -147,7 +147,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			LubJqK/fyeheHzULabE+Bf4wywscoLjotun4RAvtylQ=
+			Rh3gOCXYZWRvLkd+EULGTknpDdtSNmhA58saiGv4t7g=
 			</data>
 		</dict>
 		<key>Modules/flutter_barcode_scanner.swiftmodule/arm64.swiftdoc</key>
@@ -161,7 +161,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			LubJqK/fyeheHzULabE+Bf4wywscoLjotun4RAvtylQ=
+			Rh3gOCXYZWRvLkd+EULGTknpDdtSNmhA58saiGv4t7g=
 			</data>
 		</dict>
 		<key>Modules/flutter_barcode_scanner.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
@@ -175,7 +175,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			bUMKOQ7WUH8MCTsZS0YN6C87G7ICvz6vPT7bPlAh6Ck=
+			rHS41XK4Wpt3toyjKdTB0Kxdqw/WKSrv2a9us2p2AuA=
 			</data>
 		</dict>
 		<key>Modules/flutter_barcode_scanner.swiftmodule/x86_64.swiftdoc</key>
@@ -189,7 +189,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			bUMKOQ7WUH8MCTsZS0YN6C87G7ICvz6vPT7bPlAh6Ck=
+			rHS41XK4Wpt3toyjKdTB0Kxdqw/WKSrv2a9us2p2AuA=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
