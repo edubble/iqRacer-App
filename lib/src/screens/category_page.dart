@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:iq_racer/src/models/category.dart';
+import 'package:iq_racer/src/global_values/utils.dart';
 import 'package:iq_racer/src/models/answer.dart';
+import 'package:iq_racer/src/models/category.dart';
 import 'package:iq_racer/src/models/question.dart';
 import 'package:iq_racer/src/models/quizz.dart';
-import 'package:iq_racer/src/widgets/question_numbers_widget.dart';
 import 'package:iq_racer/src/widgets/questions_widget.dart';
 
 class QuizzPage extends StatefulWidget {
   final Quizz quizz;
+  final Category category;
 
-  const QuizzPage({Key? key, required this.quizz}) : super(key: key);
+  const QuizzPage({Key? key, required this.quizz, required this.category})
+      : super(key: key);
 
   @override
   _QuizzPageState createState() => _QuizzPageState();
@@ -18,6 +20,8 @@ class QuizzPage extends StatefulWidget {
 class _QuizzPageState extends State<QuizzPage> {
   late PageController controller;
   late Question question;
+
+  int correctAnswers = 0;
 
   @override
   void initState() {
@@ -30,22 +34,9 @@ class _QuizzPageState extends State<QuizzPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
+          backgroundColor: widget.category.backgroundColor.toColor(),
           centerTitle: true,
           title: Text(widget.quizz.quizzName),
-          // actions: [
-          //   TextButton(
-          //       onPressed: () => (index) => nextQuestion(index: index, jump: true),
-          //       child: const Text("Saltar"))
-          // ],
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Color(0xffF5591F), Color(0xffF2861E)],
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-              ),
-            ),
-          ),
         ),
         body: QuestionsWidget(
           quizz: widget.quizz,
@@ -64,7 +55,14 @@ class _QuizzPageState extends State<QuizzPage> {
         question.isLocked = true;
         question.selectedOption = option;
       });
+
+      if (question.selectedOption!.isCorrect == 1) {
+        correctAnswers++;
+      }
     }
+
+    print(correctAnswers);
+
   }
 
   void nextQuestion({int? index, bool jump = false}) {

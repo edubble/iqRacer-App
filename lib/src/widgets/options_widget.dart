@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:iq_racer/src/global_values/utils.dart';
 import 'package:iq_racer/src/models/answer.dart';
 import 'package:iq_racer/src/models/question.dart';
 
@@ -14,21 +13,24 @@ class OptionsWidget extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => ListView(
+  Widget build(BuildContext context) => ListView.builder(
         physics: const BouncingScrollPhysics(),
-        children: Utils.heightBetween(
-          question.answers
-              .map((option) => buildOption(context, option))
-              .toList(),
-          height: 8,
-        ),
+        itemCount: question.answers.length,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.fromLTRB(0, 4, 0, 4),
+            child: buildOption(context, question.answers[index]),
+          );
+        },
       );
 
   Widget buildOption(BuildContext context, Answer option) {
     final color = getColorForOption(option, question);
 
     return GestureDetector(
-      onTap: () => onClickedOption(option),
+      onTap: () {
+        onClickedOption(option);
+      },
       child: Container(
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
@@ -38,40 +40,31 @@ class OptionsWidget extends StatelessWidget {
         child: Column(
           children: [
             buildAnswer(option),
-            buildSolution(question.selectedOption, option),
+            // buildSolution(question.selectedOption, option),
           ],
         ),
       ),
     );
   }
 
-  Widget buildAnswer(Answer option) => Container(
-        height: 50,
-        child: Row(
-          children: [
-            Text(
-              option.code,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+  Widget buildAnswer(Answer option) => Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: Text.rich(
+            TextSpan(
+              children: [
+                TextSpan(
+                    text: option.code + ". ",
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 20)),
+                TextSpan(
+                    text: option.text, style: const TextStyle(fontSize: 20))
+              ],
             ),
-            const SizedBox(width: 12),
-            Text(
-              option.text,
-              style: const TextStyle(fontSize: 20),
-            )
-          ],
+          ),
         ),
       );
-
-  Widget buildSolution(Answer? solution, Answer answer) {
-    if (solution == answer) {
-      return Text(
-        question.solution,
-        style: const TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
-      );
-    } else {
-      return Container();
-    }
-  }
 
   Color getColorForOption(Answer answer, Question question) {
     final isSelected = answer == question.selectedOption;
@@ -79,7 +72,24 @@ class OptionsWidget extends StatelessWidget {
     if (!isSelected) {
       return Colors.grey.shade200;
     } else {
+      if (answer.isCorrect == 1) {
+        return Colors.green;
+      }
+
       return answer.isCorrect == 1 ? Colors.green : Colors.red;
     }
   }
+}
+
+int getCorrectAwnserIndex(Question question) {
+  int index = 0;
+  List<Answer> answers = question.answers;
+
+  for (var i = 0; i < answers.length; i++) {
+    if (answers[i].isCorrect == 1) {
+      return i;
+    }
+  }
+
+  return index;
 }

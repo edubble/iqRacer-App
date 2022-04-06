@@ -27,12 +27,12 @@ class QuestionsWidget extends StatelessWidget {
         itemBuilder: (context, index) {
           final question = quizz.questions[index];
 
-          return buildQuestion(question: question);
+          return buildQuestion(question: question, pageIndex: index);
         },
       );
 
   Widget buildQuestion({
-    required Question question,
+    required Question question, required int pageIndex
   }) =>
       Container(
         padding: const EdgeInsets.all(16),
@@ -56,7 +56,13 @@ class QuestionsWidget extends StatelessWidget {
                 onClickedOption: onClickedOption,
               ),
             ),
+
+            pageIndex == 9 ? Text("LastONe") : Text("no")
+
           ],
         ),
       );
 }
+
+
+
