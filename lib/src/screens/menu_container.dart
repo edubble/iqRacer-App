@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:iq_racer/src/controllers/question_controller.dart';
+import 'package:iq_racer/src/global_values/utils.dart';
 import 'package:iq_racer/src/models/category.dart';
 import 'package:iq_racer/src/models/user.dart';
 import 'package:iq_racer/src/screens/categories_screen.dart';
-import 'package:iq_racer/src/screens/menuprincipal_screen.dart';
 import 'package:iq_racer/src/screens/profile_screen.dart';
 import 'package:iq_racer/src/screens/scan_screen_widget.dart';
 import 'package:iq_racer/src/screens/settings_screen.dart';
@@ -10,7 +12,8 @@ import 'package:iq_racer/src/screens/trophies_screen.dart';
 import 'package:iq_racer/src/widgets/sidebar_menu.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key, required this.user, required this.categories}) : super(key: key);
+  const HomeScreen({Key? key, required this.user, required this.categories})
+      : super(key: key);
 
   final User user;
   final List<Category> categories;
@@ -23,8 +26,8 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedPageIndex = 0;
 
   static final List<String> _titles = [
-    "Perfil",
     "Categorias",
+    "Perfil",
     "Trofeos",
     "QR",
     "Ajustes",
@@ -39,8 +42,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> _pages = [
-      ProfilePage(user: widget.user),
       Categories(categories: widget.categories),
+      ProfilePage(user: widget.user),
       const TrophiesPage(),
       QRScreen(user: widget.user),
       SettingsPage(),

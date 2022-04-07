@@ -18,7 +18,7 @@ class SideBarMenu extends StatelessWidget {
     const padding = EdgeInsets.symmetric(horizontal: 20);
     final firstName = user.firstname;
     final userName = user.userName;
-    final profilePic = user.userImage;
+    final profilePic = "assets/images/${user.userImage}";
 
     return Drawer(
       child: Material(
@@ -35,10 +35,10 @@ class SideBarMenu extends StatelessWidget {
           child: ListView(
             children: <Widget>[
               buildHeader(
-                  urlImage: profilePic!,
+                  urlImage: profilePic,
                   name: firstName,
                   email: "@" + userName,
-                  index: 0,
+                  index: 1,
                   secondIndex: 3,
                   context: context),
               Container(
@@ -49,7 +49,7 @@ class SideBarMenu extends StatelessWidget {
                     // buildSearchField(),
 
                     const SizedBox(height: 24),
-                    buildMenuItem('Preguntas', Icons.quiz, 1, context),
+                    buildMenuItem('Preguntas', Icons.quiz, 0, context),
 
                     const SizedBox(height: 24),
                     buildMenuItem('Trofeos', Icons.emoji_events, 2, context),

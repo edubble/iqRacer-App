@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iq_racer/src/models/user.dart';
+import 'package:iq_racer/src/screens/login_screen.dart';
 import 'package:iq_racer/src/screens/update_data_screen.dart';
 import 'package:iq_racer/src/widgets/profile_menu.dart';
 import 'package:iq_racer/src/widgets/profile_pic.dart';
@@ -16,14 +17,16 @@ class ProfilePage extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: Column(
         children: [
-          ProfilePic(profilePic: user.userImage!),
+          ProfilePic(profilePic: 'assets/images/${user.userImage!}'),
           const SizedBox(height: 20),
           UserProfileOption(
             text: user.firstname + " " + user.lastname,
             icon: Icons.person,
             press: () => {
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => UpdateDataScreen(fieldValue: user.firstname + " " + user.lastname,),
+                builder: (context) => UpdateDataScreen(
+                  fieldValue: user.firstname + " " + user.lastname,
+                ),
               ))
             },
             rightIcon: icon,
@@ -56,7 +59,11 @@ class ProfilePage extends StatelessWidget {
 _logOutButton(BuildContext context, String text) {
   return GestureDetector(
     onTap: () {
-      print("Session closed");
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => const LoginScreen()),
+        (route) => false,
+      );
     },
     child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),

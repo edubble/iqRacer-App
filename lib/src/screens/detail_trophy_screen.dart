@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:iq_racer/src/global_values/utils.dart';
 import 'package:iq_racer/src/screens/map_screen.dart';
-import 'package:iq_racer/src/screens/menuprincipal_screen.dart';
 
 class DetailTrophyPage extends StatefulWidget {
   const DetailTrophyPage({Key? key, required this.trophy}) : super(key: key);

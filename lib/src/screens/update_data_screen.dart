@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iq_racer/src/screens/menuprincipal_screen.dart';
+import 'package:iq_racer/src/global_values/utils.dart';
 
 class UpdateDataScreen extends StatefulWidget {
   const UpdateDataScreen({Key? key, required this.fieldValue})

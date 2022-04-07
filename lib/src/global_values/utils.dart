@@ -31,3 +31,17 @@ extension ColorExtension on String {
     }
   }
 }
+
+
+Widget appBarStyle() {
+  return Container(
+    decoration: const BoxDecoration(
+        
+        color: Color(0xffF5591F),
+        gradient: LinearGradient(
+          colors: [(Color(0xffF5591F)), (Color(0xffF2861E))],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        )),
+  );
+}

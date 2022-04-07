@@ -53,6 +53,7 @@ dependencies:
   json_serializable: ^6.1.5
 
   font_awesome_flutter: ^10.1.0
+  get: ^4.6.1
 
 dev_dependencies:
   flutter_test:

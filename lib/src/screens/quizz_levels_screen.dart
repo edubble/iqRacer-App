@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iq_racer/src/global_values/utils.dart';
 import 'package:iq_racer/src/models/category.dart';
 import 'package:iq_racer/src/models/quizz.dart';
-import 'package:iq_racer/src/screens/category_page.dart';
+import 'package:iq_racer/src/screens/quiz_screen.dart';
 
 class QuizzLevels extends StatefulWidget {
   const QuizzLevels({Key? key, required this.quizzes, required this.category}) : super(key: key);
@@ -94,7 +94,7 @@ Widget contenido(BuildContext context, List<Quizz> quizzes, Category category) {
                 GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => QuizzPage(quizz: quizzes[index], category: category,),
+                      builder: (context) => QuizScreen(quizz: quizzes[index], category: category,),
                     ));
                   },
                   child: Row(

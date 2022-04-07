@@ -242,6 +242,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "get",
+      "rootUri": "file:///usr/local/Caskroom/flutter/2.5.3/flutter/.pub-cache/hosted/pub.dartlang.org/get-4.6.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "glob",
       "rootUri": "file:///usr/local/Caskroom/flutter/2.5.3/flutter/.pub-cache/hosted/pub.dartlang.org/glob-2.0.2",
       "packageUri": "lib/",
@@ -674,7 +680,7 @@
       "languageVersion": "2.16"
     }
   ],
-  "generated": "2022-04-05T15:28:27.785459Z",
+  "generated": "2022-04-06T18:25:35.776755Z",
   "generator": "pub",
   "generatorVersion": "2.16.2"
 }

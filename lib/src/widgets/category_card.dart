@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iq_racer/src/global_values/utils.dart';
 import 'package:iq_racer/src/models/category.dart';
-import 'package:iq_racer/src/screens/category_page.dart';
 import 'package:iq_racer/src/screens/quizz_levels_screen.dart';
 
 class CategoryCard extends StatelessWidget {

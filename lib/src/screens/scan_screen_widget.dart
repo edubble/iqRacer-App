@@ -37,7 +37,7 @@ class _ScanState extends State<QRScreen> {
               clipBehavior: Clip.none,
               children: [
                 CircleAvatar(
-                  backgroundImage: AssetImage(widget.user.userImage!),
+                  backgroundImage: AssetImage("assets/images/${widget.user.userImage}"),
                   backgroundColor: const Color(0xFFF5F6F9),
                 ),
               ],

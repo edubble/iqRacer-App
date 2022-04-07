@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:iq_racer/src/models/answer.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:get/get.dart';
 import 'package:iq_racer/src/models/category.dart';
-import 'package:iq_racer/src/models/question.dart';
+import 'package:iq_racer/src/models/global.dart';
 import 'package:iq_racer/src/models/quizz.dart';
 import 'package:iq_racer/src/models/user.dart';
 import 'package:iq_racer/src/screens/menu_container.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:iq_racer/src/screens/quiz_screen.dart';
+// import 'package:iq_racer/src/screens/quiz/quiz_screen.dart';
 
 // ignore: camel_case_types
 class WelcomeScreen extends StatefulWidget {
@@ -22,8 +24,6 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     with SingleTickerProviderStateMixin {
   final colorstheme = const Color(0xff4b4b87);
 
-  List<Category> categoriesList = [];
-
   @override
   void initState() {
     doSomeAsyncStuff();
@@ -38,6 +38,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     var answers = await getDataApi("answers");
 
     categoriesList = getListCategories(categories, quizzes, questions, answers);
+
   }
 
   final GlobalKey<ScaffoldState> _key = GlobalKey();
@@ -58,10 +59,13 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                 return Center(
                   child: TextButton(
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => HomeScreen(
-                            user: widget.user, categories: categoriesList),
-                      ));
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => HomeScreen(
+                                user: widget.user, categories: categoriesList)),
+                        (route) => false,
+                      );
                     },
                     child: const Text("play"),
                   ),
@@ -121,8 +125,7 @@ List<Quizz> getListQuizzes(
       int idCategory = item["id_category"];
       int idLevel = item["id_level"];
       int numQuestions = item["num_questions"];
-      List<Question> questions =
-          getListQuestions(idQuizz, dbQuestions, dbAnswer);
+      List questions = getListQuestions(idQuizz, dbQuestions, dbAnswer);
 
       Quizz quizz = Quizz(
           idQuizz: idQuizz,
@@ -139,22 +142,21 @@ List<Quizz> getListQuizzes(
   return quizzes;
 }
 
-List<Question> getListQuestions(int idQuizz, List dbQuestions, List dbAnswer) {
-  List<Question> questions = [];
+List getListQuestions(int idQuizz, List dbQuestions, List dbAnswer) {
+  List questions = [];
 
   for (var item in dbQuestions) {
     if (item["id_quizz"] == idQuizz) {
       int idQuestion = item["id_question"];
       String questionText = item["question_text"];
-      String solutionText = item["solution_text"];
-      List<Answer> answers = getListAnswers(idQuestion, dbAnswer);
+      Map mapAnswers = getAnswers(idQuestion, dbAnswer);
 
-      Question question = Question(
-          idQuestion: idQuestion,
-          text: questionText,
-          answers: answers,
-          solution: solutionText,
-          selectedOption: null);
+      Map question = {
+        'id': idQuestion,
+        'question': questionText,
+        'options': mapAnswers["answers"],
+        'answer_index': mapAnswers["answer_index"]
+      };
 
       questions.add(question);
     }
@@ -163,25 +165,28 @@ List<Question> getListQuestions(int idQuizz, List dbQuestions, List dbAnswer) {
   return questions;
 }
 
-List<Answer> getListAnswers(int idQuestion, List dbAnswer) {
-  List<Answer> answers = [];
+Map getAnswers(int idQuestion, List dbAnswer) {
+  List<String> answers = [];
+  Map dataAnswers;
+  int correctIndex = 0;
+  int counter = 0;
 
   for (var item in dbAnswer) {
     if (item["id_question"] == idQuestion) {
-      int idAnswer = item["id_answer"];
-      String answerText = item["answer_text"];
-      String code = item["code_answer"];
-      int isCorrect = item["is_correct"];
+      String optionText = item["answer_text"];
+      int isCorrecte = item["is_correct"];
 
-      Answer answer = Answer(
-          idAnswer: idAnswer,
-          text: answerText,
-          code: code,
-          isCorrect: isCorrect);
+      if (isCorrecte == 1) {
+        correctIndex = counter;
+      } else {
+        counter++;
+      }
 
-      answers.add(answer);
+      answers.add(optionText);
     }
   }
 
-  return answers;
+  dataAnswers = {"answers": answers, "answer_index": correctIndex};
+
+  return dataAnswers;
 }

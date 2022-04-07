@@ -25,10 +25,10 @@ class InitState extends State<SignUpScreen> {
       "email": email,
       "password": pass,
       "register_date": "2022-02-24T16:30:00",
-      "active": 1,
       "id_gender": 1,
-      "id_group": 1,
-      "user_image": ""
+      "first_time": 1,
+      "alias": "user_null",
+      "user_image": "trevor-pic.webp"
     };
 
     var body = json.encode(data);

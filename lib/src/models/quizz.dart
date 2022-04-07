@@ -6,7 +6,7 @@ class Quizz {
   final int idCategory;
   final int idLevel;
   final int numQuestions;
-  final List<Question> questions;
+  final List questions;
 
   Quizz({
     required this.idQuizz,

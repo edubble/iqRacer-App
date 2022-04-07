@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:iq_racer/src/screens/menuprincipal_screen.dart';
+import 'package:iq_racer/src/global_values/utils.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({Key? key, required this.latitude, required this.longitude, required this.city})

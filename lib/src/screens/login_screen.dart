@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:iq_racer/src/models/global.dart';
 import 'package:iq_racer/src/screens/menu_container.dart';
 import 'package:iq_racer/src/models/user.dart';
 import 'package:iq_racer/src/screens/signup_screen.dart';
@@ -32,26 +33,27 @@ class InitState extends State<LoginScreen> {
       for (var item in jsonData) {
         if (item["email"] == email && item["password"] == pass) {
           isCorrect = true;
-          user = User(
-            item["id"],
-            "xd",
+          currentUser = User(
+            item["id_user"],
             item["firstname"],
             item["lastname"],
             item["email"],
             item["password"],
             item["register_date"],
-            item["Active"],
             item["id_gender"],
-            item["id_group"],
-            "assets/images/trevor-pic.webp",
+            item["first_time"],
+            "user_" + item["id_user"].toString(),
+            "trevor-pic.webp",
           );
 
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => WelcomeScreen(
-                        user: user,
-                      )));
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+                builder: (context) => WelcomeScreen(
+                      user: currentUser,
+                    )),
+            (route) => false,
+          );
 
           break;
         }
@@ -92,7 +94,7 @@ class InitState extends State<LoginScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
+              children: const [
                 CircleAvatar(
                   backgroundImage: AssetImage('assets/images/logo.png'),
                   backgroundColor: Colors.white,
@@ -238,16 +240,18 @@ class InitState extends State<LoginScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(right: 5),
-                child: const Text("¿No tienes cuenta?"),
+                child: Text("¿No tienes cuenta?"),
               ),
               GestureDetector(
-                onTap: () => {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const SignUpScreen()))
+                onTap: () {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SignUpScreen()),
+                    (route) => false,
+                  );
                 },
                 child: const Text(
                   "Registrarse",
