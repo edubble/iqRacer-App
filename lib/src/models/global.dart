@@ -1,4 +1,5 @@
 import 'package:iq_racer/src/models/category.dart';
+import 'package:iq_racer/src/models/quizz.dart';
 import 'package:iq_racer/src/models/user.dart';
 
 User currentUser = User(
@@ -13,5 +14,7 @@ User currentUser = User(
   "",
   "assets/images/trevor-pic.webp",
 );
+
+int currentIdQuizz = 0;
 
 List<Category> categoriesList = [];

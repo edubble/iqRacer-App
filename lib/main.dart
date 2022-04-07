@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
-import 'package:iq_racer/src/screens/categories_screen.dart';
 import 'package:iq_racer/src/screens/login_screen.dart';
 
 void main() {

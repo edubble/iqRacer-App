@@ -1,7 +1,11 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:iq_racer/src/models/global.dart';
 import 'package:iq_racer/src/models/question.dart';
 import 'package:iq_racer/src/screens/score_screen.dart';
+
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 // We use get package for our state management
 
@@ -46,8 +50,8 @@ class QuestionController extends GetxController
   void onInit() {
     // Our animation duration is 60 s
     // so our plan is to fill the progress bar within 60s
-    _animationController = AnimationController(
-        duration: const Duration(seconds: 1000), vsync: this);
+    _animationController =
+        AnimationController(duration: const Duration(seconds: 30), vsync: this);
     _animation = Tween<double>(begin: 0, end: 1).animate(_animationController)
       ..addListener(() {
         // update like setState
@@ -98,11 +102,11 @@ class QuestionController extends GetxController
     });
   }
 
-  void nextQuestion() {
+  void nextQuestion() async {
     if (_questionNumber.value != _questions.length) {
       _isAnswered = false;
       _pageController.nextPage(
-          duration: Duration(milliseconds: 250), curve: Curves.ease);
+          duration: const Duration(milliseconds: 250), curve: Curves.ease);
 
       // Reset the counter
       _animationController.reset();
@@ -111,6 +115,18 @@ class QuestionController extends GetxController
       // Once timer is finish go to the next qn
       _animationController.forward().whenComplete(nextQuestion);
     } else {
+      var idUserHistory = await existsUserHistory();
+
+      print(idUserHistory);
+
+      if (idUserHistory != -1) {
+        print('Update!');
+        updateUserHistory(_numOfCorrectAns, idUserHistory);
+      } else {
+        createUserHistory(_numOfCorrectAns);
+        print('Create!');
+      }
+
       // Get package provide us simple way to naviigate another page
       Get.to(() => ScoreScreen(
           correctAnswers: _numOfCorrectAns, quizzLength: questions.length));
@@ -120,4 +136,68 @@ class QuestionController extends GetxController
   void updateTheQnNum(int index) {
     _questionNumber.value = index + 1;
   }
+}
+
+Future createUserHistory(int correctAns) async {
+  var url = "http://rogercr2001-001-site1.itempurl.com/api/user_histories";
+
+  Map data = {
+    "id_user": currentUser.id,
+    "id_quizz": currentIdQuizz,
+    "status": 1,
+    "correct_answers": correctAns,
+    "best_time": 0.0
+  };
+
+  var body = json.encode(data);
+  var response = await http.post(Uri.parse(url),
+      headers: {"Content-Type": "application/json"}, body: body);
+  var statusCode = response.statusCode;
+
+  if (response.statusCode == 200) {
+    print(currentIdQuizz);
+  }
+  return statusCode;
+}
+
+existsUserHistory() async {
+  String url = "http://rogercr2001-001-site1.itempurl.com/api/user_histories";
+
+  final response = await http.get(Uri.parse(url));
+
+  if (response.statusCode == 200) {
+    var jsonData = jsonDecode(response.body);
+
+    for (var item in jsonData) {
+      if (item["id_user"] == currentUser.id &&
+          item["id_quizz"] == currentIdQuizz) {
+        return item["id_user_histories"];
+      }
+    }
+  }
+  return -1;
+}
+
+Future updateUserHistory(int correctAns, idUserHistory) async {
+  var url =
+      "http://rogercr2001-001-site1.itempurl.com/api/user_histories/$idUserHistory";
+
+  Map data = {
+    "id_user_histories": idUserHistory,
+    "id_user": currentUser.id,
+    "id_quizz": currentIdQuizz,
+    "status": 1,
+    "correct_answers": correctAns,
+    "best_time": 0.0
+  };
+
+  var body = json.encode(data);
+  var response = await http.put(Uri.parse(url),
+      headers: {"Content-Type": "application/json"}, body: body);
+  var statusCode = response.statusCode;
+
+  if (response.statusCode == 200) {
+    print(currentIdQuizz);
+  }
+  return statusCode;
 }

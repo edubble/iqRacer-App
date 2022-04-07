@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:iq_racer/src/controllers/question_controller.dart';
 import 'package:iq_racer/src/global_values/utils.dart';
 import 'package:iq_racer/src/models/category.dart';
+import 'package:iq_racer/src/models/global.dart';
 import 'package:iq_racer/src/models/quizz.dart';
 import 'package:iq_racer/src/screens/quizz_components/body.dart';
 
@@ -20,6 +21,8 @@ class QuizScreen extends StatefulWidget {
 class _QuizScreenState extends State<QuizScreen> {
   @override
   Widget build(BuildContext context) {
+
+    currentIdQuizz = widget.quizz.idQuizz;
     var questions = widget.quizz.questions;
 
     Get.delete<QuestionController>();
