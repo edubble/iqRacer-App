@@ -12,7 +12,7 @@ class ScoreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var values = getValuesScore(1);
+    var values = getValuesScore(correctAnswers);
 
     return Scaffold(
       body: Center(
