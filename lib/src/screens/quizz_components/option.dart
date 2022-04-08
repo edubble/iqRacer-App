@@ -49,16 +49,18 @@ class Option extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text.rich(
-                    TextSpan(
-                      children: [
-                        TextSpan(
-                            text: "${codes[index]}. ",
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20)),
-                        TextSpan(
-                            text: text, style: const TextStyle(fontSize: 20))
-                      ],
+                  Flexible(
+                    child: Text.rich(
+                      TextSpan(
+                        children: [
+                          TextSpan(
+                              text: "${codes[index]}. ",
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 20)),
+                          TextSpan(
+                              text: text, style: const TextStyle(fontSize: 20))
+                        ],
+                      ),
                     ),
                   ),
                   Container(

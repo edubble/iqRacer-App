@@ -22,25 +22,41 @@ class ProfilePage extends StatelessWidget {
           UserProfileOption(
             text: currentUser.firstname + " " + currentUser.lastname,
             icon: Icons.person,
-            press: () => {
+            press: () {
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => UpdateDataScreen(
-                  fieldValue: currentUser.firstname + " " + currentUser.lastname,
+                  fieldValue:
+                      currentUser.firstname + " " + currentUser.lastname,
+                      title: "Usuario",
                 ),
-              ))
+              ));
             },
             rightIcon: icon,
           ),
           UserProfileOption(
             text: currentUser.email,
             icon: Icons.email,
-            press: () {},
+            press: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => UpdateDataScreen(
+                  fieldValue: currentUser.email,
+                  title: "Email",
+                ),
+              ));
+            },
             rightIcon: icon,
           ),
           UserProfileOption(
             text: "@" + currentUser.userName,
             icon: Icons.sentiment_satisfied_rounded,
-            press: () {},
+            press: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => UpdateDataScreen(
+                  fieldValue: currentUser.userName,
+                  title: "Alias",
+                ),
+              ));
+            },
             rightIcon: icon,
           ),
           UserProfileOption(

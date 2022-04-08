@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:iq_racer/src/global_values/utils.dart';
 
 class UpdateDataScreen extends StatefulWidget {
-  const UpdateDataScreen({Key? key, required this.fieldValue})
+  const UpdateDataScreen({Key? key, required this.fieldValue, required this.title})
       : super(key: key);
 
   final String fieldValue;
+  final String title;
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -30,8 +31,8 @@ class _HomeScreenState extends State<UpdateDataScreen> {
         backgroundColor: const Color(0xffFC5200),
         centerTitle: true,
         leadingWidth: 80,
-        title: const Text(
-          "Usuario",
+        title:  Text(
+          widget.title,
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
         actions: <Widget>[
@@ -58,7 +59,7 @@ class _HomeScreenState extends State<UpdateDataScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: [nombreUsuario(context, controlador)],
+            children: [nombreUsuario(context, controlador, widget.title)],
           ),
         ),
       ),
@@ -67,16 +68,16 @@ class _HomeScreenState extends State<UpdateDataScreen> {
 }
 
 @override
-Widget nombreUsuario(BuildContext context, TextEditingController controlador) {
+Widget nombreUsuario(BuildContext context, TextEditingController controlador, String title) {
   return TextField(
     controller: controlador,
-    decoration: const InputDecoration(
+    decoration: InputDecoration(
       border:
-          OutlineInputBorder(borderSide: BorderSide(color: Color(0xffFC5200))),
+          const OutlineInputBorder(borderSide: BorderSide(color: Color(0xffFC5200))),
       helperText:
           'Puedes elegir un nombre de usuario en IqRacer.\nSi lo haces, las personas te podrán encontrar por ese \nnombre y contactarte sin saber tu número de teléfono. \n\nPuedes usar a-z, 0-9 y guiones bajos.\n\nLa longitud mínima es de 5 caracteres.',
       // labelText: 'Usuario: ',
-      prefixText: 'Usuario: ',
+      prefixText: '$title: ',
     ),
   );
 }

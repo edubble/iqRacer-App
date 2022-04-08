@@ -91,17 +91,17 @@ Map getValuesScore(int score) {
       "max_number": [0, 4]
     },
     {
-      "image": "assets/images/passTest.png",
+      "image": "assets/images/medallaBronce.png",
       "text": "¡Bien jugado!",
       "max_number": [5, 6]
     },
     {
-      "image": "assets/images/passTest.png",
+      "image": "assets/images/medallaPlata.png",
       "text": "¡Genio!",
       "max_number": [7, 8]
     },
     {
-      "image": "assets/images/passTest.png",
+      "image": "assets/images/medallaOro.png",
       "text": "¡Excelente!",
       "max_number": [9, 10]
     },

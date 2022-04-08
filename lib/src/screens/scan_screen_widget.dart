@@ -29,36 +29,38 @@ class _ScanState extends State<QRScreen> {
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(20),
-      child: Column(
-        children: [
-          SizedBox(
-            height: 115,
-            width: 115,
-            child: Stack(
-              fit: StackFit.expand,
-              clipBehavior: Clip.none,
-              children: [
-                CircleAvatar(
-                  backgroundImage:
-                      AssetImage("assets/images/${currentUser.userImage}"),
-                  backgroundColor: const Color(0xFFF5F6F9),
-                ),
-              ],
+      child: Center(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 115,
+              width: 115,
+              child: Stack(
+                fit: StackFit.expand,
+                clipBehavior: Clip.none,
+                children: [
+                  CircleAvatar(
+                    backgroundImage:
+                        AssetImage("assets/images/${currentUser.userImage}"),
+                    backgroundColor: const Color(0xFFF5F6F9),
+                  ),
+                ],
+              ),
             ),
-          ),
-          const SizedBox(height: 20),
-          Text(
-            currentUser.userName,
-          ),
-          QrImage(
-            data: data,
-            size: MediaQuery.of(context).size.height * 0.4,
-          ),
-          _scanQrButton(
-            context,
-            "Escanear",
-          )
-        ],
+            const SizedBox(height: 20),
+            Text(
+              currentUser.userName,
+            ),
+            QrImage(
+              data: data,
+              size: MediaQuery.of(context).size.height * 0.4,
+            ),
+            _scanQrButton(
+              context,
+              "Escanear",
+            )
+          ],
+        ),
       ),
     );
   }

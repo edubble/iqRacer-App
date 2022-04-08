@@ -10,7 +10,7 @@
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		36h8TVmT+Rr49PcR8452AW+oFcI=
+		LKoWG6e7VEJeXzXG8qXJm1a/Tdk=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
@@ -280,6 +280,18 @@
 		<data>
 		Dc+WeLx2RYUE35oCXi7PtS41c00=
 		</data>
+		<key>flutter_assets/assets/images/medallaBronce.png</key>
+		<data>
+		wuevNWOHYdlVdpBAPmkpoob5B2Q=
+		</data>
+		<key>flutter_assets/assets/images/medallaOro.png</key>
+		<data>
+		bJpQYNW9hamYiQ9jA1gXqnNNaik=
+		</data>
+		<key>flutter_assets/assets/images/medallaPlata.png</key>
+		<data>
+		B0k8hzAZ9V39WtVvg64CoS5fieM=
+		</data>
 		<key>flutter_assets/assets/images/mindful.jpeg</key>
 		<data>
 		qEY40DKV6yWolMgJeQ4WyULW1tg=
@@ -295,18 +307,6 @@
 		<key>flutter_assets/assets/images/programing.png</key>
 		<data>
 		PvoKxl1ON+A3RGxJiPxVjMtItd8=
-		</data>
-		<key>flutter_assets/assets/images/puesto1.png</key>
-		<data>
-		rRbg/gzhl5GKYl2AsPyXl7JxykI=
-		</data>
-		<key>flutter_assets/assets/images/puesto2.png</key>
-		<data>
-		lyHdmtRl0BA+OSAk72zcxAUosQ0=
-		</data>
-		<key>flutter_assets/assets/images/puesto3.png</key>
-		<data>
-		Mk6IicVHo/oVKY9zNwyKHwsSXJI=
 		</data>
 		<key>flutter_assets/assets/images/science.png</key>
 		<data>
@@ -350,7 +350,7 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		wFHLS0G1AdCoEEawX8B4opxHcnw=
+		Easp7JoL+THujndFsm9pZWx/VUk=
 		</data>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -383,11 +383,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			36h8TVmT+Rr49PcR8452AW+oFcI=
+			LKoWG6e7VEJeXzXG8qXJm1a/Tdk=
 			</data>
 			<key>hash2</key>
 			<data>
-			1+rOV1/N6dBCmTdNQh6NySa0H6mPZU2rDQ8wwZVv/9Q=
+			WESkzhxZY/UzOnvW/DOqPFeZKB4aYhQdoQQ0dBfQwLs=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -1116,6 +1116,39 @@
 			eXbV+zLCijl9+e24svD4Cq5vIk8+NMb5sjHp36YCoAc=
 			</data>
 		</dict>
+		<key>flutter_assets/assets/images/medallaBronce.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			wuevNWOHYdlVdpBAPmkpoob5B2Q=
+			</data>
+			<key>hash2</key>
+			<data>
+			VSp97NCvM/MUzjXgYMTVeOFoREvOCSJ+VMAQ9sRFMJE=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/images/medallaOro.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			bJpQYNW9hamYiQ9jA1gXqnNNaik=
+			</data>
+			<key>hash2</key>
+			<data>
+			zPQQcBvu4EEAmuEq/McNQsctT/i4M+V+1WiIojWPjo0=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/images/medallaPlata.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			B0k8hzAZ9V39WtVvg64CoS5fieM=
+			</data>
+			<key>hash2</key>
+			<data>
+			xRmvesPG9inpjBYINXM+TsQQY7xRAZUTfjAFaFIx4zg=
+			</data>
+		</dict>
 		<key>flutter_assets/assets/images/mindful.jpeg</key>
 		<dict>
 			<key>hash</key>
@@ -1158,39 +1191,6 @@
 			<key>hash2</key>
 			<data>
 			grmSJEuJa/nBfmQ4OHUZnWMtY+stsUGH1ugYAwKRYhM=
-			</data>
-		</dict>
-		<key>flutter_assets/assets/images/puesto1.png</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			rRbg/gzhl5GKYl2AsPyXl7JxykI=
-			</data>
-			<key>hash2</key>
-			<data>
-			NTeHEA4bMvJxkd3DG2m9GbNYcUp6CzZdRd8V5tsAth8=
-			</data>
-		</dict>
-		<key>flutter_assets/assets/images/puesto2.png</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			lyHdmtRl0BA+OSAk72zcxAUosQ0=
-			</data>
-			<key>hash2</key>
-			<data>
-			yGkF/BkQk/lLPQ0oM8ulrYbRD0478C7xuQsviQNkz+4=
-			</data>
-		</dict>
-		<key>flutter_assets/assets/images/puesto3.png</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			Mk6IicVHo/oVKY9zNwyKHwsSXJI=
-			</data>
-			<key>hash2</key>
-			<data>
-			xgqsmNsO5kvrQA/PhYCLL6nW8IVCbPwlkSsm43+lDDw=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/images/science.png</key>
@@ -1307,11 +1307,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			wFHLS0G1AdCoEEawX8B4opxHcnw=
+			Easp7JoL+THujndFsm9pZWx/VUk=
 			</data>
 			<key>hash2</key>
 			<data>
-			nZNqwBe9UukXVnVITDHqt6GHfSX0iImPRLH6NqQK+CY=
+			2TMzec3+kBnq1OBswbpeNG/lllapKylg9GZzdZU7Cfk=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>

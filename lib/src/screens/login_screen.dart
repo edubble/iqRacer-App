@@ -44,7 +44,7 @@ class InitState extends State<LoginScreen> {
             item["id_gender"],
             item["first_time"],
             "user_" + item["id_user"].toString(),
-            "trevor-pic.webp",
+            item["user_image"],
           );
 
           print(currentUser.id);

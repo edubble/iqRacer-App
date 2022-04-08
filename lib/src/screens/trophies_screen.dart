@@ -17,7 +17,7 @@ class _TrophiesPageState extends State<TrophiesPage> {
     {
       "id": 9,
       "name": "Historia",
-      "images": ["assets/images/mindful.jpeg", "assets/images/gopher2.jpeg"],
+      "images": ["assets/images/gopher.webp", "assets/images/gopher2.jpeg"],
       "achieved": 0,
       "dateTime": null,
       "address": "Salesians Sarrià, Barcelona, España",
@@ -28,7 +28,7 @@ class _TrophiesPageState extends State<TrophiesPage> {
     {
       "id": 10,
       "name": "Arte y literatura",
-      "images": ["assets/images/gopher2.jpeg", "assets/images/mindful.jpeg"],
+      "images": ["assets/images/gopher.webp", "assets/images/gopher2.jpeg"],
       "achieved": 0,
       "dateTime": "14/12/2001 14:56:10",
       "address": "Salesians Sarrià, Barcelona, España",
