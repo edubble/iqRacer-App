@@ -108,7 +108,7 @@ class _ScanState extends State<QRScreen> {
 
       if (statusCode == 200) {
         showDoneSnackBar(
-            context, 0xFF008000, "Contacto agregado correctamente ${idUserScanned}. ${currentUser.id}");
+            context, 0xFF008000, "Contacto agregado correctamente.");
       } else {
         showDoneSnackBar(context, 0xFFcc0000, "Error al agregar contacto.");
       }
