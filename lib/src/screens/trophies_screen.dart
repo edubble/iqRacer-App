@@ -205,6 +205,7 @@ List getUsersTrophies(List trophies, dynamic userTrophies, List idsHistories) {
       for (var item2 in newTrophies) {
         if (item2["id"] == item["id_trophy"]) {
           item2["achieved"] = 1;
+          item2["dateTime"] = item["date_add"];
           item2["latitude"] = item["latitude"];
           item2["longitude"] = item["longitude"];
         }
