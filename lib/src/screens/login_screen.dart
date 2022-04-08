@@ -43,7 +43,7 @@ class InitState extends State<LoginScreen> {
             item["register_date"],
             item["id_gender"],
             item["first_time"],
-            "user_" + item["id_user"].toString(),
+            item["alias"],
             item["user_image"],
           );
 

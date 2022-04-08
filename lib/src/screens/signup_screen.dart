@@ -27,7 +27,7 @@ class InitState extends State<SignUpScreen> {
       "register_date": "2022-02-24T16:30:00",
       "id_gender": 1,
       "first_time": 1,
-      "alias": "user_null",
+      "alias": "user_$name",
       "user_image": "trevor-pic.webp"
     };
 
