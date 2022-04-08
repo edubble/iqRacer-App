@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iq_racer/src/models/global.dart';
 import 'package:iq_racer/src/models/user.dart';
 
 class SideBarMenu extends StatelessWidget {
@@ -95,7 +96,7 @@ class SideBarMenu extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    name,
+                    "$name ${currentUser.lastname}",
                     style: const TextStyle(fontSize: 20, color: Colors.white),
                   ),
                   const SizedBox(height: 4),
