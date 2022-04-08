@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:iq_racer/src/controllers/question_controller.dart';
 import 'package:iq_racer/src/models/global.dart';
 import 'package:iq_racer/src/screens/menu_container.dart';
 import 'package:iq_racer/src/models/user.dart';
@@ -46,12 +47,11 @@ class InitState extends State<LoginScreen> {
             "trevor-pic.webp",
           );
 
+          print(currentUser.id);
+
           Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(
-                builder: (context) => WelcomeScreen(
-                      user: currentUser,
-                    )),
+            MaterialPageRoute(builder: (context) => const WelcomeScreen()),
             (route) => false,
           );
 
@@ -59,17 +59,10 @@ class InitState extends State<LoginScreen> {
         }
       }
       if (!isCorrect) {
-        _showDoneSnackBar(0xFFcc0000);
+        showDoneSnackBar(context, 0xFFcc0000, "Incorrect email or password");
       }
     }
     return isCorrect;
-  }
-
-  _showDoneSnackBar(int myColor) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: const Text("Incorrect email or password"),
-        backgroundColor: Color(myColor),
-        duration: const Duration(milliseconds: 1000)));
   }
 
   Widget initWidget() {

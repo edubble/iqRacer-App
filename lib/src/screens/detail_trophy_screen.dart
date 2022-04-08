@@ -16,7 +16,7 @@ class _DetailTrophyPageState extends State<DetailTrophyPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(widget.trophy["title"]),
+          title: Text(widget.trophy["name"]),
           centerTitle: true,
           toolbarHeight: 60,
           flexibleSpace: appBarStyle(),
@@ -25,7 +25,7 @@ class _DetailTrophyPageState extends State<DetailTrophyPage> {
           child: Column(
             children: [
               Hero(
-                tag: widget.trophy["title"],
+                tag: widget.trophy["name"],
                 child: CarouselSlider(
                   items: [
                     _sliderImage(widget.trophy["images"][0]),

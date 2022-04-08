@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iq_racer/src/models/global.dart';
 import 'package:iq_racer/src/models/user.dart';
 import 'package:iq_racer/src/screens/login_screen.dart';
 import 'package:iq_racer/src/screens/update_data_screen.dart';
@@ -6,9 +7,8 @@ import 'package:iq_racer/src/widgets/profile_menu.dart';
 import 'package:iq_racer/src/widgets/profile_pic.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key? key, required this.user}) : super(key: key);
+  const ProfilePage({Key? key}) : super(key: key);
 
-  final User user;
   final Icon icon = const Icon(Icons.arrow_forward_ios);
 
   @override
@@ -17,28 +17,28 @@ class ProfilePage extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: Column(
         children: [
-          ProfilePic(profilePic: 'assets/images/${user.userImage!}'),
+          ProfilePic(profilePic: 'assets/images/${currentUser.userImage!}'),
           const SizedBox(height: 20),
           UserProfileOption(
-            text: user.firstname + " " + user.lastname,
+            text: currentUser.firstname + " " + currentUser.lastname,
             icon: Icons.person,
             press: () => {
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => UpdateDataScreen(
-                  fieldValue: user.firstname + " " + user.lastname,
+                  fieldValue: currentUser.firstname + " " + currentUser.lastname,
                 ),
               ))
             },
             rightIcon: icon,
           ),
           UserProfileOption(
-            text: user.email,
+            text: currentUser.email,
             icon: Icons.email,
             press: () {},
             rightIcon: icon,
           ),
           UserProfileOption(
-            text: "@" + user.userName,
+            text: "@" + currentUser.userName,
             icon: Icons.sentiment_satisfied_rounded,
             press: () {},
             rightIcon: icon,

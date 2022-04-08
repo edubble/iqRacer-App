@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:iq_racer/src/global_values/utils.dart';
 import 'package:iq_racer/src/models/category.dart';
+import 'package:iq_racer/src/models/global.dart';
 import 'package:iq_racer/src/models/quizz.dart';
-import 'package:iq_racer/src/screens/quiz_screen.dart';
+import 'package:iq_racer/src/screens/quizz_screen.dart';
 
 class QuizzLevels extends StatefulWidget {
-  const QuizzLevels({Key? key, required this.quizzes, required this.category}) : super(key: key);
+  const QuizzLevels({Key? key, required this.quizzes, required this.category})
+      : super(key: key);
 
   final List<Quizz> quizzes;
   final Category category;
@@ -15,10 +17,10 @@ class QuizzLevels extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<QuizzLevels> {
-
-
   @override
   Widget build(BuildContext context) {
+    currentColor = widget.category.backgroundColor.toColor();
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.category.categoryName),
@@ -32,7 +34,8 @@ class _HomeScreenState extends State<QuizzLevels> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              containerFotoNombre(context, "assets/images/${widget.category.imageUrl}"),
+              containerFotoNombre(
+                  context, "assets/images/${widget.category.imageUrl}"),
               contenido(context, widget.quizzes, widget.category)
             ],
           ),
@@ -94,7 +97,10 @@ Widget contenido(BuildContext context, List<Quizz> quizzes, Category category) {
                 GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => QuizScreen(quizz: quizzes[index], category: category,),
+                      builder: (context) => QuizScreen(
+                        quizz: quizzes[index],
+                        category: category,
+                      ),
                     ));
                   },
                   child: Row(

@@ -1,13 +1,15 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
-import 'package:iq_racer/src/models/user.dart';
+import 'package:iq_racer/src/controllers/question_controller.dart';
+import 'package:iq_racer/src/models/global.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:http/http.dart' as http;
 
 class QRScreen extends StatefulWidget {
-  const QRScreen({Key? key, required this.user}) : super(key: key);
-  final User user;
+  const QRScreen({Key? key}) : super(key: key);
 
   @override
   _ScanState createState() => _ScanState();
@@ -23,7 +25,7 @@ class _ScanState extends State<QRScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String data = "${widget.user.userName};${widget.user.firstname}";
+    String data = "${currentUser.id}";
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(20),
@@ -37,7 +39,8 @@ class _ScanState extends State<QRScreen> {
               clipBehavior: Clip.none,
               children: [
                 CircleAvatar(
-                  backgroundImage: AssetImage("assets/images/${widget.user.userImage}"),
+                  backgroundImage:
+                      AssetImage("assets/images/${currentUser.userImage}"),
                   backgroundColor: const Color(0xFFF5F6F9),
                 ),
               ],
@@ -45,7 +48,7 @@ class _ScanState extends State<QRScreen> {
           ),
           const SizedBox(height: 20),
           Text(
-            widget.user.userName,
+            currentUser.userName,
           ),
           QrImage(
             data: data,
@@ -92,7 +95,21 @@ class _ScanState extends State<QRScreen> {
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
       barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
-          '#ff6666', 'Cancel', true, ScanMode.QR);
+          '#F2861E', 'Cancelar', true, ScanMode.QR);
+
+      // Insert relationship
+      int idUserScanned = int.parse(barcodeScanRes);
+      var statusCode = await createRelationShip(idUserScanned);
+
+      print("QR code ${idUserScanned}");
+      print("User current code ${currentUser.id}");
+
+      if (statusCode == 200) {
+        showDoneSnackBar(
+            context, 0xFF008000, "Contacto agregado correctamente ${idUserScanned}. ${currentUser.id}");
+      } else {
+        showDoneSnackBar(context, 0xFFcc0000, "Error al agregar contacto.");
+      }
     } on PlatformException {
       barcodeScanRes = 'Failed to get platform version.';
     }
@@ -104,4 +121,20 @@ class _ScanState extends State<QRScreen> {
       print(_scanBarcode);
     });
   }
+}
+
+Future createRelationShip(idUser) async {
+  var url = "http://rogercr2001-001-site1.itempurl.com/api/relationships";
+
+  Map data = {
+    "id_user_send": currentUser.id,
+    "id_user_received": idUser,
+  };
+
+  var body = json.encode(data);
+  var response = await http.post(Uri.parse(url),
+      headers: {"Content-Type": "application/json"}, body: body);
+  var statusCode = response.statusCode;
+
+  return statusCode;
 }

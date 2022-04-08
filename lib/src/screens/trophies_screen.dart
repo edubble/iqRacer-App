@@ -1,4 +1,7 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:iq_racer/src/models/global.dart';
 import 'package:iq_racer/src/screens/detail_trophy_screen.dart';
 import 'package:iq_racer/src/widgets/trophy_card_widget.dart';
 
@@ -12,7 +15,8 @@ class TrophiesPage extends StatefulWidget {
 class _TrophiesPageState extends State<TrophiesPage> {
   List trophies = [
     {
-      "title": "Historia",
+      "id": 9,
+      "name": "Historia",
       "images": ["assets/images/mindful.jpeg", "assets/images/gopher2.jpeg"],
       "achieved": 0,
       "dateTime": null,
@@ -22,9 +26,10 @@ class _TrophiesPageState extends State<TrophiesPage> {
       "longitude": null,
     },
     {
-      "title": "Arte y literatura",
+      "id": 10,
+      "name": "Arte y literatura",
       "images": ["assets/images/gopher2.jpeg", "assets/images/mindful.jpeg"],
-      "achieved": 1,
+      "achieved": 0,
       "dateTime": "14/12/2001 14:56:10",
       "address": "Salesians Sarrià, Barcelona, España",
       "city": "Barcelona",
@@ -32,17 +37,19 @@ class _TrophiesPageState extends State<TrophiesPage> {
       "longitude": 2.1280800907598505,
     },
     {
-      "title": "Entretenimento",
+      "id": 11,
+      "name": "Entretenimento",
       "images": ["assets/images/gopher.webp", "assets/images/gopher2.jpeg"],
-      "achieved": 1,
+      "achieved": 0,
       "dateTime": "14/12/2001 14:56:10",
-       "address": "Salesians Sarrià, Barcelona, España",
-       "city": "Barcelona",
-       "latitude": 41.394209639341035,
+      "address": "Salesians Sarrià, Barcelona, España",
+      "city": "Barcelona",
+      "latitude": 41.394209639341035,
       "longitude": 2.1280800907598505,
     },
     {
-      "title": "Videojuegos",
+      "id": 12,
+      "name": "Videojuegos",
       "images": ["assets/images/gopher.webp", "assets/images/gopher2.jpeg"],
       "achieved": 0,
       "dateTime": null,
@@ -50,20 +57,21 @@ class _TrophiesPageState extends State<TrophiesPage> {
       "city": "Barcelona",
       "latitude": null,
       "longitude": null,
-
     },
     {
-      "title": "Geografia",
+      "id": 13,
+      "name": "Geografia",
       "images": ["assets/images/gopher.webp", "assets/images/gopher2.jpeg"],
-      "achieved": 1,
+      "achieved": 0,
       "dateTime": "14/12/2001 14:56:10",
-       "address": "Salesians Sarrià, Barcelona, España",
-       "city": "Barcelona",
-       "latitude": 41.394209639341035,
+      "address": "Salesians Sarrià, Barcelona, España",
+      "city": "Barcelona",
+      "latitude": 41.394209639341035,
       "longitude": 2.1280800907598505,
     },
     {
-      "title": "Ciencia",
+      "id": 14,
+      "name": "Ciencia",
       "images": ["assets/images/gopher.webp", "assets/images/gopher2.jpeg"],
       "achieved": 0,
       "dateTime": null,
@@ -71,10 +79,10 @@ class _TrophiesPageState extends State<TrophiesPage> {
       "city": "Barcelona",
       "latitude": null,
       "longitude": null,
-
     },
     {
-      "title": "Programación",
+      "id": 15,
+      "name": "Programación",
       "images": ["assets/images/gopher.webp", "assets/images/gopher2.jpeg"],
       "achieved": 0,
       "dateTime": null,
@@ -82,23 +90,51 @@ class _TrophiesPageState extends State<TrophiesPage> {
       "city": "Barcelona",
       "latitude": null,
       "longitude": null,
-
     },
     {
-      "title": "Aleatorio",
+      "id": 16,
+      "name": "Aleatorio",
       "images": ["assets/images/gopher.webp", "assets/images/gopher2.jpeg"],
-      "achieved": 1,
+      "achieved": 0,
       "dateTime": "14/12/2001 14:56:10",
-       "address": "Salesians Sarrià, Barcelona, España",
-       "city": "Barcelona",
-       "latitude": 41.394209639341035,
+      "address": "Salesians Sarrià, Barcelona, España",
+      "city": "Barcelona",
+      "latitude": 41.394209639341035,
       "longitude": 2.1280800907598505,
     },
   ];
 
+
+  @override
+  void initState() {
+    loadUsersRelationships();
+    super.initState();
+  }
+
+  Future<void> loadUsersRelationships() async {
+    var userHistoriesids = await getDataApi("user_histories");
+    var userTrophies = await getDataApi("user_trophies");
+
+    var ids = getUserHistories(userHistoriesids, currentUser.id!);
+    trophies = getUsersTrophies(trophies, userTrophies, ids);
+
+    print(currentUser.id);
+
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return FutureBuilder(
+        future: loadUsersRelationships(),
+        builder: (context, projectSnap) {
+          if (projectSnap.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(
+                color: Colors.orange,
+              ),
+            );
+          } else {
+            return Padding(
       padding: const EdgeInsets.all(20.0),
       child: GridView.builder(
           gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
@@ -113,26 +149,68 @@ class _TrophiesPageState extends State<TrophiesPage> {
             if (achieved == 0) {
               return TrophyCard(
                 image: trophies[index]["images"][0],
-                title: trophies[index]["title"],
+                title: trophies[index]["name"],
                 achieved: achieved,
               );
             } else {
-
               return GestureDetector(
-
                 onTap: () => Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) =>
                         DetailTrophyPage(trophy: trophies[index]))),
                 child: Hero(
-                    tag: trophies[index]["title"],
+                    tag: trophies[index]["name"],
                     child: TrophyCard(
                       image: trophies[index]["images"][0],
-                      title: trophies[index]["title"],
+                      title: trophies[index]["name"],
                       achieved: achieved,
                     )),
               );
             }
           }),
     );
+
+          }
+        });
   }
+}
+
+Future getDataApi(String table) async {
+  String url = "http://rogercr2001-001-site1.itempurl.com/api/${table}";
+  final response = await http.get(Uri.parse(url));
+
+  if (response.statusCode == 200) {
+    var jsonData = jsonDecode(response.body);
+
+    return jsonData;
+  }
+}
+
+List getUserHistories(dynamic userHistories, int idUser) {
+  List idsHistories = [];
+
+  for (var item in userHistories) {
+    if (item["id_user"] == idUser) {
+      idsHistories.add(item["id_user_histories"]);
+    }
+  }
+
+  return idsHistories;
+}
+
+List getUsersTrophies(List trophies, dynamic userTrophies, List idsHistories) {
+  List newTrophies = trophies;
+
+  for (var item in userTrophies) {
+    if (idsHistories.contains(item["id_user_histories"])) {
+      for (var item2 in newTrophies) {
+        if (item2["id"] == item["id_trophy"]) {
+          item2["achieved"] = 1;
+          item2["latitude"] = item["latitude"];
+          item2["longitude"] = item["longitude"];
+        }
+      }
+    }
+  }
+
+  return newTrophies;
 }

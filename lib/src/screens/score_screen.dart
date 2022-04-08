@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:iq_racer/src/constants.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:iq_racer/src/controllers/question_controller.dart';
 import 'package:iq_racer/src/models/global.dart';
 import 'package:iq_racer/src/screens/menu_container.dart';
 
@@ -11,51 +7,113 @@ class ScoreScreen extends StatelessWidget {
   final int quizzLength;
 
   const ScoreScreen(
-      {Key? key, required this.correctAnswers, required this.quizzLength})
+      {Key? key, required this.correctAnswers, required this.quizzLength,})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          SvgPicture.asset("assets/icons/bg.svg", fit: BoxFit.fill),
-          Column(
-            children: [
-              const Spacer(flex: 3),
-              Text(
-                "Score",
-                style: Theme.of(context)
-                    .textTheme
-                    .headline3!
-                    .copyWith(color: kSecondaryColor),
-              ),
-              const Spacer(),
-              Text(
-                "${correctAnswers * 10}/${quizzLength * 10}",
-                style: Theme.of(context)
-                    .textTheme
-                    .headline4!
-                    .copyWith(color: kSecondaryColor),
-              ),
-              const Spacer(flex: 3),
-              TextButton(
-                  onPressed: () {
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => HomeScreen(
-                              user: currentUser, categories: categoriesList)),
-                      (route) => false,
-                    );
+    var values = getValuesScore(1);
 
-                  },
-                  child: Text("Volver"))
+    return Scaffold(
+      body: Center(
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          color: currentColor,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "$correctAnswers / $quizzLength",
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 60.00,
+                  fontWeight: FontWeight.w600,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                values["text"],
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 48.00,
+                    fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 40.0),
+              Image(
+                  height: 200, width: 200, image: AssetImage(values["image"])),
+              const SizedBox(height: 40.0),
+              ElevatedButton.icon(
+                label: const Text(
+                  "Volver",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black),
+                ),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.white,
+                  elevation: 10,
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(60))),
+                  maximumSize: const Size(700, 200),
+                  minimumSize: const Size(200, 100),
+                ),
+                icon: const Icon(
+                  Icons.arrow_back_ios,
+                  color: Colors.black,
+                ),
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => HomeScreen(
+                            categories: categoriesList)),
+                    (route) => false,
+                  );
+                },
+              ),
             ],
-          )
-        ],
+          ),
+        ),
       ),
     );
   }
+}
+
+Map getValuesScore(int score) {
+  List values = [
+    {
+      "image": "assets/images/failedTest.png",
+      "text": "¡Oops!",
+      "max_number": [0, 4]
+    },
+    {
+      "image": "assets/images/passTest.png",
+      "text": "¡Bien jugado!",
+      "max_number": [5, 6]
+    },
+    {
+      "image": "assets/images/passTest.png",
+      "text": "¡Genio!",
+      "max_number": [7, 8]
+    },
+    {
+      "image": "assets/images/passTest.png",
+      "text": "¡Excelente!",
+      "max_number": [9, 10]
+    },
+  ];
+
+  for (var item in values) {
+    List numbers = item["max_number"];
+
+    if (numbers.contains(score)) {
+      return item;
+    }
+  }
+
+  return values[0];
 }

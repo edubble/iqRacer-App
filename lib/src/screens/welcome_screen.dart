@@ -1,3 +1,4 @@
+import 'package:animated_background/animated_background.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -7,14 +8,12 @@ import 'package:iq_racer/src/models/global.dart';
 import 'package:iq_racer/src/models/quizz.dart';
 import 'package:iq_racer/src/models/user.dart';
 import 'package:iq_racer/src/screens/menu_container.dart';
-import 'package:iq_racer/src/screens/quiz_screen.dart';
+import 'package:iq_racer/src/screens/quizz_screen.dart';
 // import 'package:iq_racer/src/screens/quiz/quiz_screen.dart';
 
 // ignore: camel_case_types
 class WelcomeScreen extends StatefulWidget {
-  const WelcomeScreen({Key? key, required this.user}) : super(key: key);
-
-  final User user;
+  const WelcomeScreen({Key? key}) : super(key: key);
 
   @override
   _WelcomeScreenState createState() => _WelcomeScreenState();
@@ -27,7 +26,6 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   @override
   void initState() {
     doSomeAsyncStuff();
-
     super.initState();
   }
 
@@ -38,7 +36,6 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     var answers = await getDataApi("answers");
 
     categoriesList = getListCategories(categories, quizzes, questions, answers);
-
   }
 
   final GlobalKey<ScaffoldState> _key = GlobalKey();
@@ -56,18 +53,68 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   ),
                 );
               } else {
-                return Center(
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => HomeScreen(
-                                user: widget.user, categories: categoriesList)),
-                        (route) => false,
-                      );
-                    },
-                    child: const Text("play"),
+                return AnimatedBackground(
+                  behaviour: RandomParticleBehaviour(
+                    options: const ParticleOptions(
+                      spawnMaxRadius: 25,
+                      spawnMinRadius: 8.00,
+                      particleCount: 100,
+                      spawnMaxSpeed: 50.00,
+                      spawnMinSpeed: 5.00,
+                      minOpacity: 0.3,
+                      spawnOpacity: 0.5,
+                      baseColor: Colors.orange,
+                      //  image: Image(image: AssetImage("assets/images/confetti.png")),
+                    ),
+                  ),
+                  vsync: this,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Center(
+                        child: Container(
+                          height: 200,
+                          width: 200,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(100.0),
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Color(0x80000000),
+                                  blurRadius: 12.0,
+                                  offset: Offset(0.0, 5.0),
+                                ),
+                              ],
+                              gradient: const LinearGradient(
+                                colors: [
+                                  (Color(0xffF5591F)),
+                                  (Color(0xffF2861E))
+                                ],
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                              )),
+                          child: Center(
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => HomeScreen(
+                                          categories: categoriesList)),
+                                  (route) => false,
+                                );
+                              },
+                              child: const Text(
+                                'JUGAR',
+                                style: TextStyle(
+                                    fontSize: 50.0,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 );
               }

@@ -55,6 +55,9 @@ class SideBarMenu extends StatelessWidget {
                     buildMenuItem('Trofeos', Icons.emoji_events, 2, context),
 
                     const SizedBox(height: 24),
+                    buildMenuItem('Amigos', Icons.contacts_rounded, 5, context),
+
+                    const SizedBox(height: 24),
                     buildMenuItem('Ajustes', Icons.settings, 4, context),
                   ],
                 ),
